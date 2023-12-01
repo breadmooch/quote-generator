@@ -9,7 +9,7 @@ const newQuoteBtn = document.getElementById('new-quote');
 //Show New Quote
 function newQuote(){
   //Pick a random quote from apiQuotes array
-  const quote = localQuotes[Math.floor(Math.random()*localQuotes.length)];
+  const quote = apiQuotes[Math.floor(Math.random()*apiQuotes.length)];
   //Check id Author field is blank, replace it with 'unknown'
   if(!quote.author){
     authorText.textContent="unknown";
@@ -26,16 +26,16 @@ function newQuote(){
 }
 
 // Get Quotes from API
-// async function getQuotes(){
-//     const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
-//    try {
-//        const response = await fetch(apiUrl);
-//        apiQuotes = await response.json();
-//        newQuote();
-//    } catch(error){
-//     // Catch Error Here
-//    }
-// }
+async function getQuotes(){
+    const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
+   try {
+       const response = await fetch(apiUrl);
+       apiQuotes = await response.json();
+       newQuote();
+   } catch(error){
+    // Catch Error Here
+   }
+}
 
 //Tweet Quote
 function tweetQuote() {
@@ -48,5 +48,5 @@ newQuoteBtn.addEventListener('click', newQuote);
 twitterBtn.addEventListener('click', tweetQuote);
 
 // //On load
-// getQuotes();
-newQuote();
+getQuotes();
+// newQuote();
