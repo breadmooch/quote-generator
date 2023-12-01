@@ -10,7 +10,18 @@ const newQuoteBtn = document.getElementById('new-quote');
 function newQuote(){
   //Pick a random quote from apiQuotes array
   const quote = localQuotes[Math.floor(Math.random()*localQuotes.length)];
-  authorText.textContent = quote.author;
+  //Check id Author field is blank, replaces it with quote unknown
+  if(!quote.author){
+    authorText.textContent="unknown";
+  } else {
+    authorText.textContent = quote.author;
+  }
+   //Check quote length to determine the styling
+  if(quote.text.length>50){
+    quoteText.classList.add('long-quote');
+  } else {
+    quoteText.classList.remove('long-quote');
+  }
   quoteText.textContent = quote.text;
 }
 
